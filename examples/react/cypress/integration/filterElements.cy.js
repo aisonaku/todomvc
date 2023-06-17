@@ -29,19 +29,19 @@ describe('Check filters', function () {
                     window.localStorage.setItem("react-todos", JSON.stringify(baseTodos));
                     cy.visit('/');
 
-                    var expectedTasks = []
+                    var expectedTasksTitles = []
                     if (state.filterName === 'Active') {
-                        expectedTasks = baseTodos.filter(task => task.completed === false)
+                        expectedTasksTitles = baseTodos.filter(task => task.completed === false).map(task => task.title)
                     }
                     if (state.filterName === 'Completed') {
-                        expectedTasks = baseTodos.filter(task => task.completed)
+                        expectedTasksTitles = baseTodos.filter(task => task.completed).map(task => task.title)
                     }
 
                     cy.get('.filters').contains(state.filterName).click()
-                    cy.get('.todo-list > li').each((task, i) => {
-                        cy.wrap(task)
-                            .should('contain.text', expectedTasks[i].title)
-                    })
+
+                    cy.get('.todo-list > li').then($els => {
+                        return Array.from($els).map(el => el.innerText)
+                      }).should('deep.equal', expectedTasksTitles)
                 })
             })
         })
