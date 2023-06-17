@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Call mom +3580000000. Today!",
+        "completed": true,
+        "id": "1"
+    },
+    {
+        "title": "Buy avocados",
+        "completed": true,
+        "id": "2"
+    },
+    {
+        "title": "Check the weather https://en.ilmatieteenlaitos.fi/local-weather",
+        "completed": true,
+        "id": "3"
+    },
+    {
+        "title": "Feed the cat Алиса ^_^~",
+        "completed": true,
+        "id": "4"
+    },
+    {
+        "title": "Follow the spiders",
+        "completed": true,
+        "id": "5"
+    }
+]
