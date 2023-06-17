@@ -41,7 +41,7 @@ describe('Check filters', function () {
 
                     cy.get('.todo-list > li').then($els => {
                         return Array.from($els).map(el => el.innerText)
-                      }).should('deep.equal', expectedTasksTitles)
+                    }).should('deep.equal', expectedTasksTitles)
                 })
             })
         })

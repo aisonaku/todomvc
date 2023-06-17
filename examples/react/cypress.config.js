@@ -3,7 +3,6 @@ module.exports = {
     specPattern: '**/*.cy.js',
     fixturesFolder: 'cypress/fixtures',
     baseUrl: 'https://todomvc.com/examples/react/',
-    video: false,
-    browser: 'chrome'
+    video: false
   },
 };
