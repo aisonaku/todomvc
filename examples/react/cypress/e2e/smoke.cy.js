@@ -5,7 +5,7 @@ const expectedTodos = ["Call mom +3580000000. Today!",
     "Go to the store"
 ]
 describe('Smoke tests', function () {
-    it('Check that it is possible to see only active tasks', () => {
+    it('Check that it is possible to complete all the tasks', () => {
         cy.visit('/')
 
         cy.log('Add tasks to the list')
@@ -30,6 +30,21 @@ describe('Smoke tests', function () {
         cy.get('.todo-list > li').then($els => {
             return Array.from($els).map(el => el.innerText)
         }).should('deep.equal', [expectedTodos[0], expectedTodos[2]])
+
+        cy.log('Mark the next task as completed')
+        cy.get('.todo-list > li').eq(0).find('input.toggle').click()
+
+        cy.log('Check that only one task is visible with "Active" filter is applied')
+        cy.get('.todo-list > li').should('have.length', 1)
+
+        cy.log('Mark the last task as completed')
+        cy.get('.todo-list > li').find('input.toggle').eq(0).click()
+
+        cy.log('Check that list of active tasks is empty')
+        cy.get('.todo-list').should('be.empty')
+
+        cy.log('Check that counter of active tasks is 0')
+        cy.get('.todo-count').contains('0 items left')        
     })
 
     it('Check that it is possible to remove all completed tasks from the list and add more tasks', () => {

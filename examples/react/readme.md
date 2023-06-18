@@ -35,3 +35,25 @@ _If you have other helpful links to share, or find any of the links above no lon
 The app is built with [JSX](http://facebook.github.io/react/docs/jsx-in-depth.html) and compiled at runtime for a lighter and more fun code reading experience. As stated in the link, JSX is not mandatory.
 
 To run the app, spin up an HTTP server (e.g. `python -m SimpleHTTPServer`) and visit http://localhost/.../myexample/.
+
+## Running tests locally
+1. Install the dependencies
+```
+    npm i
+```
+
+2. Run Cypress tests
+``` 
+    npx cypress run -b chrome
+```
+
+## Running tests with docker
+1. Build the image
+```
+    docker build -t <image_name:image_tag> --file cypress.Dockerfile .
+```
+
+2. Run Cypress tests in Docker
+``` 
+    docker run -ti <image_name:image_tag>
+```
