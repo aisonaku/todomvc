@@ -12,7 +12,7 @@ describe('Check task deletion', () => {
         var expectedTasks = this.baseTasks
         expectedTasks.splice(firstActiveTaskIndex, 1)
 
-        cy.get('.todo-list > li').eq(firstActiveTaskIndex).realHover('mouse').find('.destroy').click()
+        cy.get('.todo-list li').eq(firstActiveTaskIndex).realHover('mouse').find('.destroy').click()
 
         cy.getAllLocalStorage().then((result) => {
             cy.wrap(result['https://todomvc.com']['react-todos'])
@@ -26,7 +26,7 @@ describe('Check task deletion', () => {
         expectedTasks.splice(firstCompletedTaskIndex, 1)
 
         cy.visit('/');
-        cy.get('.todo-list > li').eq(firstCompletedTaskIndex).realHover('mouse').find('.destroy').click()
+        cy.get('.todo-list li').eq(firstCompletedTaskIndex).realHover('mouse').find('.destroy').click()
 
         cy.getAllLocalStorage().then((result) => {
             cy.wrap(result['https://todomvc.com']['react-todos'])

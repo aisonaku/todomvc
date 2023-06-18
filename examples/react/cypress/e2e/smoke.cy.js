@@ -14,31 +14,31 @@ describe('Smoke tests', function () {
         })
 
         cy.log('Check that all tasks are added')
-        cy.get('.todo-list > li').then($els => {
+        cy.get('.todo-list li').then($els => {
             return Array.from($els).map(el => el.innerText)
         }).should('deep.equal', expectedTodos)
 
         cy.log('Mark some tasks as completed')
-        cy.get('.todo-list > li').get('input.toggle').eq(1).click()
-        cy.get('.todo-list > li').get('input.toggle').eq(3).click()
-        cy.get('.todo-list > li').get('input.toggle').eq(4).click()
+        cy.get('.todo-list li').eq(1).find('input.toggle').click()
+        cy.get('.todo-list li').eq(3).find('input.toggle').click()
+        cy.get('.todo-list li').eq(4).find('input.toggle').click()
 
         cy.log('Filter only active tasks')
         cy.get('.filters').contains('Active').click()
 
         cy.log('Check that only active tasks are visible')
-        cy.get('.todo-list > li').then($els => {
+        cy.get('.todo-list li').then($els => {
             return Array.from($els).map(el => el.innerText)
         }).should('deep.equal', [expectedTodos[0], expectedTodos[2]])
 
         cy.log('Mark the next task as completed')
-        cy.get('.todo-list > li').eq(0).find('input.toggle').click()
+        cy.get('.todo-list li').eq(0).find('input.toggle').click()
 
         cy.log('Check that only one task is visible with "Active" filter is applied')
-        cy.get('.todo-list > li').should('have.length', 1)
+        cy.get('.todo-list li').should('have.length', 1)
 
         cy.log('Mark the last task as completed')
-        cy.get('.todo-list > li').find('input.toggle').eq(0).click()
+        cy.get('.todo-list li').find('input.toggle').click()
 
         cy.log('Check that list of active tasks is empty')
         cy.get('.todo-list').should('be.empty')
@@ -56,8 +56,8 @@ describe('Smoke tests', function () {
         })
 
         cy.log('Mark some tasks as completed')
-        cy.get('.todo-list > li').get('input.toggle').eq(0).click()
-        cy.get('.todo-list > li').get('input.toggle').eq(2).click()
+        cy.get('.todo-list li').eq(0).find('input.toggle').click()
+        cy.get('.todo-list li').eq(2).find('input.toggle').click()
 
         cy.log('Filter only completed tasks')
         cy.get('.filters').contains('Completed').click()
@@ -77,7 +77,7 @@ describe('Smoke tests', function () {
         cy.get('.filters').contains('All').click()
 
         cy.log('Check that all tasks are added')
-        cy.get('.todo-list > li').then($els => {
+        cy.get('.todo-list li').then($els => {
             return Array.from($els).map(el => el.innerText)
         }).should('deep.equal', [expectedTodos[1], expectedTodos[3], expectedTodos[4]])
     })
