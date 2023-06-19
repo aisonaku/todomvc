@@ -9,7 +9,6 @@ describe("Check task deletion", () => {
 	});
 
 	it("Check active task can be remove", function () {
-		console.log("this", this.baseTasks);
 		const firstActiveTaskIndex = this.baseTasks.findIndex(
 			(task) => task.completed === false
 		);
